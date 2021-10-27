@@ -1,17 +1,23 @@
 import React from 'react';
 import {StyleSheet, Text, View, SafeAreaView, FlatList, Button} from "react-native";
 
+// Noter
+// - Kunne slette et valg af en slags pille
+// - Kunne logge ind og se sine piller (evt. bare med en hardcoded user og password)
+// - Vælg hvor ofte man skal tage pillerne (evt. med en alert med options)
+// - Lav pille mg varianter disabled / forsvinde når man har valgt den
+
 const Separator = () => (
     <View style={styles.separator}/>
 );
 
-const APill = (aPillChoice) => {
+const ViewAPillChoice = (aPillChoice) => {
     return (
         <Text style={styles.title}>{aPillChoice.name} - {aPillChoice.strength} mg</Text>
     )
 }
 
-const MyPills = (props) => {
+const ViewAllMyPillChoices = (props) => {
     const pills = props.pills;
 
     console.log(pills.length)
@@ -21,13 +27,13 @@ const MyPills = (props) => {
         <FlatList
             data={props.pills}
             extraData={props.pills.length}
-            renderItem={({item}) => APill(item)}
+            renderItem={({item}) => ViewAPillChoice(item)}
             keyExtractor={(_, index) => index.toString()}
         />
     )
 }
 
-const PillVariantChoice = (pill, pills, setPills) => {
+const ViewPillStrengthVariants = (pill, pills, setPills) => {
     return (
         <FlatList
             data={pill.variants}
@@ -50,7 +56,7 @@ const PillVariantChoice = (pill, pills, setPills) => {
     )
 }
 
-const ViewPick = (AvailPills, pills, setPills) => {
+const ViewPillsAndTheirVariants = (AvailPills, pills, setPills) => {
     return (
         <View style={{width: '90%', height: '80%'}}>
             <Text style={styles.title}>Piller du kan tilføje</Text>
@@ -59,15 +65,13 @@ const ViewPick = (AvailPills, pills, setPills) => {
                 data={AvailPills}
                 keyExtractor={(_, index) => index.toString()}
                 renderItem={({item}) => {
-
                     return (
                         <View style={styles.PillChoice}>
                             <Text style={styles.title}>{item.name}</Text>
-                            {PillVariantChoice(item, pills, setPills)}
+                            {ViewPillStrengthVariants(item, pills, setPills)}
 
                             <Separator/>
                         </View>
-
                     )
                 }}
             />
@@ -76,19 +80,14 @@ const ViewPick = (AvailPills, pills, setPills) => {
     )
 }
 
-
 export default function App() {
     const [toggleView, setToggleView] = React.useState(true);
-
     const [AvailPills, setAvailPills] = React.useState(require('./pills.json'))
     const [pills, setPills] = React.useState([]);
 
     return (
         <SafeAreaView style={styles.container}>
-
-
-            {toggleView ? ViewPick(AvailPills, pills, setPills) : <MyPills pills={pills}/>}
-
+            {toggleView ? ViewPillsAndTheirVariants(AvailPills, pills, setPills) : <ViewAllMyPillChoices pills={pills}/>}
 
             <View
                 style={{
@@ -99,14 +98,12 @@ export default function App() {
                 <Button
                     title="Mine piller"
                     onPress={() => {
-                        console.log("Mine piller")
                         setToggleView(false)
                     }}
                 />
                 <Button
                     title="Vælg nye piller"
                     onPress={() => {
-                        console.log("Vælg nye piller")
                         setToggleView(true)
                     }}
                 />
