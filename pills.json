@@ -1,17 +1,80 @@
 [
   {
-    "shouldDisable": false, "name": "Panodil", "variants": [500, 800, 1000]
+    "shouldDisable": false,
+    "name": "Panodil",
+    "variants": [
+      {
+        "show": true,
+        "mg": 500
+      },
+      {
+        "show": true,
+        "mg": 1000
+      }
+    ]
   },
   {
-    "shouldDisable": false, "name": "Ipren", "variants": [200, 400]
+    "shouldDisable": false,
+    "name": "Ipren",
+    "variants": [
+      {
+        "show": true,
+        "mg": 200
+      },
+      {
+        "show": true,
+        "mg": 400
+      }
+    ]
   },
   {
-    "shouldDisable": false, "name": "Lamotrigin", "variants": [25, 50, 100, 200]
+    "shouldDisable": false,
+    "name": "Lamotrigin",
+    "variants": [
+      {
+        "show": true,
+        "mg": 25
+      },
+      {
+        "show": true,
+        "mg": 50
+      },
+      {
+        "show": true,
+        "mg": 100
+      },
+      {
+        "show": true,
+        "mg": 200
+      }
+    ]
   },
   {
-    "shouldDisable": false, "name": "Oxcarbezepin", "variants": [150, 300, 600]
+    "shouldDisable": false,
+    "name": "Oxcarbezepin",
+    "variants": [
+      {
+        "show": true,
+        "mg": 150
+      },
+      {
+        "show": true,
+        "mg": 300
+      },
+      {
+        "show": true,
+        "mg": 600
+      }
+    ]
   },
   {
-    "shouldDisable": false, "name": "Karbamazepin", "variants": [200]
+    "shouldDisable": false,
+    "name": "Karbamazepin",
+    "variants": [
+      {
+        "show": true,
+        "mg": 200
+      }
+    ]
   }
 ]
