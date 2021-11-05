@@ -1,6 +1,6 @@
 [
   {
-    "shouldDisable": false,
+    "showInSearch": true,
     "name": "Panodil",
     "variants": [
       {
@@ -14,7 +14,7 @@
     ]
   },
   {
-    "shouldDisable": false,
+    "showInSearch": true,
     "name": "Ipren",
     "variants": [
       {
@@ -28,7 +28,7 @@
     ]
   },
   {
-    "shouldDisable": false,
+    "showInSearch": true,
     "name": "Lamotrigin",
     "variants": [
       {
@@ -50,7 +50,7 @@
     ]
   },
   {
-    "shouldDisable": false,
+    "showInSearch": true,
     "name": "Oxcarbezepin",
     "variants": [
       {
@@ -68,7 +68,7 @@
     ]
   },
   {
-    "shouldDisable": false,
+    "showInSearch": true,
     "name": "Karbamazepin",
     "variants": [
       {

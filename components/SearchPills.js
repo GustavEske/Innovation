@@ -1,64 +1,133 @@
-import React from 'react';
-import {View, Text, FlatList, StyleSheet, Button} from "react-native";
-import {AvailablePillsState, ChosenPills, Updates} from "../StateMachine"
-import {Separator, FilterChosenPillsOutOfAvailablePills} from "./Utils";
+import React, {useState} from 'react';
+import {View, Text, FlatList, StyleSheet, Pressable, TextInput} from "react-native";
+import {Pills} from "../StateMachine"
+import {HideIfNotInSearch, Separator, SetShow} from "./Utils";
 
 export default function SearchPills({navigation}) {
-    // const [GetAvailablePills, setAvailablePills] = AvailablePillsState.use();
-    // const [GetChosenPills, setChosenPills] = ChosenPills.use();
-    const [GetUpdates, SetUpdates] = Updates.use();
-
-    // console.log(GetAvailablePills)
-    console.log(navigation.getState())
-    console.log(navigation.getState().index);
+    const [GetPills, setPills] = Pills.use();
+    const [GetSearchTerm, setSearchTerm] = useState('')
 
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>{GetUpdates}</Text>
-            {/*<FlatList*/}
-            {/*    data={FilterChosenPillsOutOfAvailablePills(GetAvailablePills, GetChosenPills)}*/}
-            {/*    extraData={GetChosenPills.length}*/}
-            {/*    keyExtractor={(_, index) => index.toString()}*/}
-            {/*    renderItem={({item: pill}) => {*/}
-            {/*        return (*/}
-            {/*            <View style={styles.PillChoice}>*/}
-            {/*                <Text style={styles.title}>{pill.name}</Text>*/}
+        <View style={{margin: 15}}>
+            <TextInput
+                placeholder="Søg"
+                value={GetSearchTerm}
+                onChangeText={(term) => {
+                    setSearchTerm(term)
+                    setPills(HideIfNotInSearch(GetPills, term))
+                }}
+                style={styles.inputField}
+            />
+            <FlatList
+                data={GetPills}
+                keyExtractor={(_, index) => index.toString()}
+                extraData={GetPills.length}
+                renderItem={({item: pill}) => {
+                    if (pill.showInSearch) {
+                        return (
+                            <View style={styles.pillContainer}>
 
-            {/*                <FlatList*/}
-            {/*                    data={pill.variants}*/}
-            {/*                    extraData={GetChosenPills.length}*/}
-            {/*                    renderItem={({item: strength}) => {*/}
-            {/*                        return (*/}
-            {/*                            <Button*/}
-            {/*                                title={`${strength.mg} mg`}*/}
-            {/*                                disabled={!strength.show}*/}
-            {/*                                onPress={() => {*/}
-            {/*                                    console.log("sChoice: " + pill.name + " of " + strength.mg + " mg")*/}
+                                <View style={styles.pillChoices}>
+                                    <Text style={styles.title}>{pill.name}</Text>
 
-            {/*                                    setChosenPills(GetChosenPills.concat({*/}
-            {/*                                        "name": pill.name,*/}
-            {/*                                        "strength": strength.mg*/}
-            {/*                                    }))*/}
-            {/*                                }}*/}
-            {/*                            />*/}
-            {/*                        )*/}
-            {/*                    }}*/}
-            {/*                    keyExtractor={(_, index) => index.toString()}*/}
-            {/*                />*/}
+                                    <FlatList
+                                        data={pill.variants}
+                                        renderItem={({item: strength}) => {
+                                            if (!strength.show) {
+                                                return (
+                                                    <View style={[styles.variantBoxPicked, styles.variantBox]}>
+                                                        <Text
+                                                            style={[styles.variantTextPicked, styles.variantText]}>{strength.mg} mg</Text>
+                                                    </View>
+                                                )
+                                            } else {
+                                                return Pick(setPills, GetPills, pill.name, strength.mg, false)
+                                            }
+                                        }}
+                                        keyExtractor={(_, index) => index.toString()}
+                                    />
+                                </View>
 
-            {/*                <Separator/>*/}
-            {/*            </View>*/}
-            {/*        )*/}
-            {/*    }}*/}
-            {/*/>*/}
+                                <Separator/>
+                            </View>
+                        )
+                    }
+                }}
+            />
         </View>
     );
 }
 
+function Pick(setPills, GetPills, name, strength, bool) {
+    return (
+        <View style={[styles.variantBoxChoice, styles.variantBox]}>
+            <Pressable
+                // disabled={!strength.show}
+                onPress={() => {
+                    setPills(SetShow(GetPills, name, strength, bool))
+                }}
+            >
+                <Text style={[styles.variantTextChoice, styles.variantText]}>{strength} mg</Text>
+            </Pressable>
+        </View>
+    )
+}
+
 const styles = StyleSheet.create({
-    PillChoice: {
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        flexWrap: 'nowrap',
+    title: {
+        fontSize: 24,
+        color: "black"
     },
+    pillChoices: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    pillContainer: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingVertical: 15,
+        paddingHorizontal: 32,
+        borderRadius: 10,
+        backgroundColor: 'white',
+        margin: 5,
+    },
+    variantText: {
+        fontSize: 22,
+        lineHeight: 60,
+        fontWeight: 'normal',
+        letterSpacing: 0.25,
+    },
+    variantTextChoice: {
+        color: 'black',
+    },
+    variantTextPicked: {
+        color: 'white',
+        textDecorationLine: 'line-through',
+        textDecorationStyle: 'solid'
+    },
+    variantBox: {
+        borderRadius: 100,
+        margin: 5,
+        width: 100,
+        alignItems: 'center',
+    },
+    variantBoxChoice: {
+        backgroundColor: 'lightgreen',
+    },
+    variantBoxPicked: {
+        backgroundColor: 'lightgrey',
+    },
+    inputField: {
+        borderWidth: 3,
+        borderColor: "lightgrey",
+        backgroundColor: "white",
+        margin: 5,
+        padding: 20,
+        fontSize: 22,
+        borderRadius: 10,
+    }
 });

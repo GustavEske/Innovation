@@ -1,33 +1,38 @@
 import React from 'react';
 import {StyleSheet, View} from "react-native";
 
-export function FilterChosenPillsOutOfAvailablePills(AvailablePills, ChosenPills) {
-    let copyAvail = AvailablePills.slice()
+export function SetShow(Pills, name, mg, bool) {
+    let newPills = Pills.slice()
 
-    copyAvail.forEach((aPill) => {
-        ChosenPills.forEach((cPill) => {
-            if (aPill.name === cPill.name) {
-                aPill.variants.forEach((strength) => {
-                    if (cPill.strength === strength.mg) {
-                        strength.show = false
-                    }
-                })
-            }
-        })
+    newPills.forEach((newPill) => {
+        if (newPill.name === name) {
+            newPill.variants.forEach((variant) => {
+                if (variant.mg === mg) {
+                    variant.show = bool
+                }
+            })
+        }
     })
 
-    return copyAvail
+    return newPills
 }
 
+export function HideIfNotInSearch(Pills, searchTerm) {
+    let newPills = Pills.slice()
 
-export function deleteChosenPill(ChosenPills, name, strength) {
-    return ChosenPills.filter((cPill) => {
-        if (cPill.name === name && cPill.strength === strength) {
-            return false
+    newPills.forEach((pill) => {
+        if (searchTerm === "") {
+            pill.showInSearch = true;
+        } else {
+            pill.showInSearch = pill.name.includes(searchTerm);
         }
-
-        return true
     })
+
+    return newPills
+}
+
+export function VerifyLoginCredentials(username, password) {
+    return "admin" === username && "123" === password
 }
 
 export const Separator = () => (
