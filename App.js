@@ -9,15 +9,7 @@ import {IsLoggedIn} from "./StateMachine";
 import ViewLoginScreen from "./components/Login";
 import ViewLogOutScreen from "./components/Logout";
 
-// Noter
-// DONE - Kunne slette et valg af en slags pille
-// DONE - Kunne logge ind og se sine piller (evt. bare med en hardcoded user og password)
-// DONE - Lav pille mg varianter disabled / forsvinde når man har valgt den
-// DONE - Søgefunktion
-//      - Vælg hvor ofte man skal tage pillerne (evt. med en alert med options)
-//      - Lav opret bruger side så man kan lave en bruger og så logge ind med den efter
-//      - Gem valg af piller på bruger
-
+//De forskellige tabs brugeren kan navigere rund på i appen - Simon
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -57,6 +49,7 @@ function MyTabs() {
     );
 }
 
+//Hvis brugeren er logget ind vises appens funktioner, ellers vises login siden - Simon
 export default function App() {
     const [GetIsLoggedIn, setIsLoggedIn] = IsLoggedIn.use();
 

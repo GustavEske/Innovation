@@ -3,6 +3,7 @@ import {View, Text, FlatList, StyleSheet, Pressable} from "react-native";
 import {Pills} from "../StateMachine"
 import {SetShow} from "./Utils";
 
+//Her vises de valgte piller. Når man trykker på fjern knappen bliver bool:true og pillen vises ikke længere her. - Rasmus
 export default function ViewChosenPills({navigation}) {
     const [GetPills, setPills] = Pills.use();
 

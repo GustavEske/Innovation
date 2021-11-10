@@ -3,6 +3,7 @@ import {View, Text, FlatList, StyleSheet, Pressable, TextInput} from "react-nati
 import {Pills} from "../StateMachine"
 import {HideIfNotInSearch, Separator, SetShow} from "./Utils";
 
+//Her vises de piller samt styrken der er hardcoded i pills.json (af Simon). Søgefunktionen filtrerer de piller fra der ikke skal vises. Hvis pillen er valgt bliver bool:false, og den vises ikke. - Gustav
 export default function SearchPills({navigation}) {
     const [GetPills, setPills] = Pills.use();
     const [GetSearchTerm, setSearchTerm] = useState('')
@@ -58,6 +59,7 @@ export default function SearchPills({navigation}) {
     );
 }
 
+//Knap hvor man vælger pillen. - Gustav
 function Pick(setPills, GetPills, name, strength, bool) {
     return (
         <View style={[styles.variantBoxChoice, styles.variantBox]}>

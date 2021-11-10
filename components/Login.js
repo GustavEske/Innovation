@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, Button, TextInput, Pressable} from "react-native
 import {IsLoggedIn} from "../StateMachine";
 import {VerifyLoginCredentials} from "./Utils";
 
+//Simpel login funktion med premade users - Simon
 export default function ViewLoginScreen() {
     const [GetIsLoggedIn, setIsLoggedIn] = IsLoggedIn.use();
     const [GetUsername, SetUsername] = useState('')

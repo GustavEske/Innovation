@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet, Button, TextInput, Pressable} from "react-native";
 import {IsLoggedIn} from "../StateMachine";
 
+//Log ud funktion der sender brugeren tilbage til login siden - Simon
 export default function ViewLogOutScreen() {
     const [GetIsLoggedIn, setIsLoggedIn] = IsLoggedIn.use();
 
