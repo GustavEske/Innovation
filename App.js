@@ -2,10 +2,10 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SearchPills from "./components/SearchPills";
+import SearchPills, {SearchPillsContainer} from "./components/SearchPills";
 import ViewChosenPills from "./components/ChosenPills";
 import {MaterialCommunityIcons} from '@expo/vector-icons';
-import {IsLoggedIn} from "./StateMachine";
+import {IsLoggedIn, Pills} from "./StateMachine";
 import ViewLoginScreen from "./components/Login";
 import ViewLogOutScreen from "./components/Logout";
 
@@ -13,6 +13,22 @@ import ViewLogOutScreen from "./components/Logout";
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
+    const [GetPills, setPills] = Pills.use();
+
+    const NoOfChosenPills = () => {
+        let number = 0
+
+        GetPills.forEach((pill) => {
+            pill.variants.forEach((variant) => {
+                if (variant.daysChosen.length > 0) {
+                    number++
+                }
+            })
+        })
+
+        return number
+    }
+
     return (
         <Tab.Navigator
             initialRouteName="Søg piller"
@@ -21,7 +37,7 @@ function MyTabs() {
             }}
         >
             <Tab.Screen name="Søg Piller"
-                        component={SearchPills}
+                        component={SearchPillsContainer}
                         options={{
                             tabBarIcon: ({color, size}) => (
                                 <MaterialCommunityIcons name="magnify" color={color} size={size}/>
@@ -35,6 +51,7 @@ function MyTabs() {
                             tabBarIcon: ({color, size}) => (
                                 <MaterialCommunityIcons name="pill" color={color} size={size}/>
                             ),
+                            tabBarBadge: NoOfChosenPills()
                         }}
             />
             <Tab.Screen name="Log ud"

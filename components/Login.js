@@ -6,8 +6,8 @@ import {VerifyLoginCredentials} from "./Utils";
 //Simpel login funktion med premade users - Simon
 export default function ViewLoginScreen() {
     const [GetIsLoggedIn, setIsLoggedIn] = IsLoggedIn.use();
-    const [GetUsername, SetUsername] = useState('')
-    const [GetPassword, SetPassword] = useState('')
+    const [GetUsername, SetUsername] = useState('admin')
+    const [GetPassword, SetPassword] = useState('123')
 
     return (
         <View style={styles.container}>

@@ -5,10 +5,12 @@
     "variants": [
       {
         "show": true,
+        "daysChosen": [],
         "mg": 500
       },
       {
         "show": true,
+        "daysChosen": [],
         "mg": 1000
       }
     ]
@@ -19,10 +21,12 @@
     "variants": [
       {
         "show": true,
+        "daysChosen": [],
         "mg": 200
       },
       {
         "show": true,
+        "daysChosen": [],
         "mg": 400
       }
     ]
@@ -33,18 +37,22 @@
     "variants": [
       {
         "show": true,
+        "daysChosen": [],
         "mg": 25
       },
       {
         "show": true,
+        "daysChosen": [],
         "mg": 50
       },
       {
         "show": true,
+        "daysChosen": [],
         "mg": 100
       },
       {
         "show": true,
+        "daysChosen": [],
         "mg": 200
       }
     ]
@@ -55,14 +63,17 @@
     "variants": [
       {
         "show": true,
+        "daysChosen": [],
         "mg": 150
       },
       {
         "show": true,
+        "daysChosen": [],
         "mg": 300
       },
       {
         "show": true,
+        "daysChosen": [],
         "mg": 600
       }
     ]
@@ -73,6 +84,7 @@
     "variants": [
       {
         "show": true,
+        "daysChosen": [],
         "mg": 200
       }
     ]

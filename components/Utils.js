@@ -18,6 +18,22 @@ export function SetShow(Pills, name, mg, bool) {
     return newPills
 }
 
+export function SetDays(Pills, name, mg, days) {
+    let newPills = Pills.slice()
+
+    newPills.forEach((newPill) => {
+        if (newPill.name === name) {
+            newPill.variants.forEach((variant) => {
+                if (variant.mg === mg) {
+                    variant.daysChosen = days
+                }
+            })
+        }
+    })
+
+    return newPills
+}
+
 export function HideIfNotInSearch(Pills, searchTerm) {
     let newPills = Pills.slice()
 
@@ -25,7 +41,7 @@ export function HideIfNotInSearch(Pills, searchTerm) {
         if (searchTerm === "") {
             pill.showInSearch = true;
         } else {
-            pill.showInSearch = pill.name.includes(searchTerm);
+            pill.showInSearch = pill.name.toLowerCase().includes(searchTerm.toLowerCase());
         }
     })
 
