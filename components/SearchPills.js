@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, FlatList, StyleSheet, Pressable, TextInput, Alert, Button} from "react-native";
+import {FlatList, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import {Pills} from "../StateMachine"
-import {HideIfNotInSearch, Separator, SetDays, SetShow} from "./Utils";
+import {HideIfNotInSearch, Separator, SetDays} from "./Utils";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();

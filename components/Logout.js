@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Button, TextInput, Pressable} from "react-native";
+import {Pressable, StyleSheet, Text, View} from "react-native";
 import {IsLoggedIn} from "../StateMachine";
 
 //Log ud funktion der sender brugeren tilbage til login siden - Simon

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, Button, TextInput, Pressable} from "react-native";
+import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import {IsLoggedIn} from "../StateMachine";
 import {VerifyLoginCredentials} from "./Utils";
 

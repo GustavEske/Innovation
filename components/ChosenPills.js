@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet, Pressable, Alert} from "react-native";
+import {Alert, FlatList, Pressable, StyleSheet, Text, View} from "react-native";
 import {Pills} from "../StateMachine"
-import {Separator, SetDays, SetShow} from "./Utils";
+import {Separator, SetDays} from "./Utils";
 
 const showAlert = (name, strength, onDelete) =>
     Alert.alert(

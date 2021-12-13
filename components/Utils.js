@@ -2,22 +2,6 @@ import React from 'react';
 import {StyleSheet, View} from "react-native";
 
 //Her laves funktionen så piller ikke vises i SearchPills hvis de er valgt, og ikke vises i ChosenPills hvis de er fjernet. - Rasmus
-export function SetShow(Pills, name, mg, bool) {
-    let newPills = Pills.slice()
-
-    newPills.forEach((newPill) => {
-        if (newPill.name === name) {
-            newPill.variants.forEach((variant) => {
-                if (variant.mg === mg) {
-                    variant.show = bool
-                }
-            })
-        }
-    })
-
-    return newPills
-}
-
 export function SetDays(Pills, name, mg, days) {
     let newPills = Pills.slice()
 
