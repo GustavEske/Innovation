@@ -18,6 +18,7 @@ export function SetDays(Pills, name, mg, days) {
     return newPills
 }
 
+//Her viser man piller man søger efter. De piller der ikke indgår i søgningen forsvinder. Inkluderet med upper og lower case bogstaver.
 export function HideIfNotInSearch(Pills, searchTerm) {
     let newPills = Pills.slice()
 

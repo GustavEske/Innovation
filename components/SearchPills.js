@@ -4,6 +4,7 @@ import {Pills} from "../StateMachine"
 import {HideIfNotInSearch, Separator, SetDays} from "./Utils";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+//Reack stacknavigator der navigerer til en ny side
 const Stack = createNativeStackNavigator();
 
 export function SearchPillsContainer({navigation}) {
@@ -21,6 +22,7 @@ export function SearchPillsContainer({navigation}) {
     )
 }
 
+//Her vælger man hvilke dage pillen skal tages, og bliver navigeret tilbage til "Søg piller" siden
 const PillProfile = ({navigation, route}) => {
     const [GetPills, setPills] = Pills.use();
     const [hasSaved, setHasSaved] = useState(false)
@@ -165,6 +167,7 @@ function Pick(navigation, route, setPills, GetPills, name, strength, bool) {
     )
 }
 
+//Styling til søge piller og vælge dage
 const styles = StyleSheet.create({
     title: {
         fontSize: 24,

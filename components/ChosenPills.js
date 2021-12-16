@@ -3,6 +3,7 @@ import {Alert, FlatList, Pressable, StyleSheet, Text, View} from "react-native";
 import {Pills} from "../StateMachine"
 import {Separator, SetDays} from "./Utils";
 
+//Slette valgt pille med en alert
 const showAlert = (name, strength, onDelete) =>
     Alert.alert(
         `Slet ${name} ${strength}mg?`,
